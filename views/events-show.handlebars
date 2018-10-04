@@ -1,4 +1,18 @@
-<h1>{{event.title}}</h1>
-<h2>{{event.charity}}</h2>
-<p>{{event.date}}</p>
-<p>{{event.notes}}</p>
+
+<a href="/">Back to Home</a>
+<div class="row">
+    <div class="col-sm-6 col-sm-offset-3">
+        <h1>Event Title: {{event.title}}</h1>
+        <h2>Charity: {{event.charity}}</h2>
+        <p>Date: {{event.date}}</p>
+        <p>Notes: {{event.notes}}</p>
+
+        <!-- EDIT BUTTON -->
+        <p><a href="/events/{{event._id}}/edit">Edit</a></p>
+        <!-- DELETE BUTTON -->
+        <p><form method="POST" action="/events/{{event._id}}?_method=DELETE">
+            <button type="submit">Delete</button>
+        </form></p>
+
+    </div>
+</div>

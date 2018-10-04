@@ -6,8 +6,8 @@ const Event = mongoose.model('Event', {
     title: String,
     charity: String,
     date: Date,
-    notes: String,
-    eventId: { type: String, required: true }
+    notes: String
+    // eventId: { type: String, required: true }
 });
 
 module.exports = Event;
