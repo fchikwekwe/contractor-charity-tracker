@@ -3,12 +3,25 @@
     <table class="table">
         <thead>
             <tr>
+                <h3>Events</h3>
+            </tr>
+            <tr>
+                <th scope="col">Event Title</th>
                 <th scope="col">Date</th>
                 <th scope="col">Charity</th>
-                <th scope="col">Made donation?</th>
             </tr>
         </thead>
 
+        <tbody>
+            {{#each events}}
+            <tr id="" data-event-id="">
+                <th scope="row"></th>
+                <td><a href="/events/{{this._id}}">{{this.title}}</a></td>
+                <td>{{this.date}}</td>
+                <td>{{this.charity}}</td>
+            </tr>
+            {{/each}}
+        </tbody>
     </table>
 </div>
 
@@ -16,11 +29,26 @@
     <table class="table">
         <thead>
             <tr>
+                <h3>Donations</h3>
+            </tr>
+            <tr>
                 <th scope="col">Date</th>
                 <th scope="col">Charity</th>
+                <th scope="col">Event Title</th>
                 <th scope="col">Amount Donated</th>
             </tr>
         </thead>
 
+        <tbody>
+            {{#each donations}}
+            <tr id="" data-event-id="">
+                <th scope="row"></th>
+                <td>{{this.date}}</td>
+                <td>{{this.charity}}</td>
+                <td>{{this.eventId}}</td>
+                <td>{{this.amount}}</td>
+            </tr>
+            {{/each}}
+        </tbody>
     </table>
 </div>
