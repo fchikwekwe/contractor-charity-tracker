@@ -19,7 +19,11 @@ module.exports = function (app) {
     })
     // New
     app.get('/events/new', (req, res) => {
-        res.render('events-new', {});
+        res.render('events-new', {
+
+        }).catch(err => {
+            console.log(err);
+        })
     })
     // Create
     app.post('/events', (req, res) => {
@@ -27,10 +31,10 @@ module.exports = function (app) {
         Event.create(req.body).then((event) => {
             console.log(event);
             console.log(event.date);
-            res.render('events-show', { event: event })
-        //     // res.redirect('/'); // (`/events/${req.params.movieId}`)
-        // }).catch((err) => {
-        //     console.log(err.message);
+            // res.render('events-show', { event: event })
+            res.redirect('/');
+        }).catch((err) => {
+            console.log(err.message);
         })
     })
 
@@ -46,8 +50,22 @@ module.exports = function (app) {
         })
 
     })
+    // Edit
+    app.get('/events/:id/edit', (req, res) => {
+        Event.findById(req.params.id, function(err, event) {
+            res.render('events-edit', { event: event })
+        }).catch(err => {
+            console.log(err.message);
+        })
+    })
 
+    app.put('/events/:id', (req, res) => {
+        Event.findByIdAndUpdate(req.params.id, req.body)
+        .then(event => {
+            res.redirect(`/events/${event._id}`)
+        }).catch(err => {
+            console.log(err.message);
+        })
+    })
 
 }
-
-console.log(date);

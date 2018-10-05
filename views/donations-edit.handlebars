@@ -1,6 +1,6 @@
 
 
-<form method="POST" action="/donations">
+<form method="POST" action="/donations/{{donation._id}}?_method=PUT">
     <!-- use donations form partial for DRY code -->
     {{> donations-form}}
 </form>

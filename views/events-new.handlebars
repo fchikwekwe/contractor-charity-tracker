@@ -1,30 +1,3 @@
 <form method="POST" action="/events">
-  <fieldset>
-      <div class="" style="padding-left: 350px; padding-right: 350px;">
-          <legend>New Event</legend>
-          <!-- Event title -->
-          <div>
-            <label for="title">Event Title</label><br>
-            <input class="form-control" type="text" name="title"/>
-        </div>
-        <!-- charity name -->
-          <div>
-            <label for="charity">Charity Name</label><br>
-            <input class="form-control" type="text" name="charity"/>
-        </div>
-        <!-- date -->
-          <div>
-            <label for="date">Event Date</label><br>
-            <input class="form-control" id="event-date" type="date" name="date"/>
-        </div>
-        <!-- notes -->
-          <div>
-            <label for="notes">Event Notes</label><br>
-            <textarea class="form-control" id="notes-text" name="notes" rows="10" placeholder="...any relevant details you may want to remember about this charity event."/></textarea>
-        </div>
-        <!-- BUTTONS -->
-        <button class="btn btn-primary" type="submit">Save Event</button>
-        <button class="btn btn-danger" type="cancel">Cancel</button>
-      </div>
-    </fieldset>
+    {{> events-form}}
 </form>

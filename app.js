@@ -1,5 +1,5 @@
 const express = require('express');
-// const methodOverride = require('method-override');
+const methodOverride = require('method-override');
 const bodyParser = require('body-parser');
 const app = express();
 const mongoose = require('mongoose');
@@ -15,7 +15,7 @@ app.set('port', process.env.PORT || 3000);
 app.set('view engine', 'handlebars');
 app.engine('handlebars', exphbs({defaultLayout: 'main'}));
 app.use(bodyParser.urlencoded({ extended: true }));
-// app.use(methodOverride('_method'));
+app.use(methodOverride('_method'));
 app.use(express.static('public'));
 app.use(bodyParser.json());
 
