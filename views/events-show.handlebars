@@ -14,5 +14,11 @@
             <button type="submit">Delete</button>
         </form></p>
 
+        <h3>Donations at this Event</h3>
+        <div id="donations">
+            {{#each donations}}
+                {{> donation}}
+            {{/each}}
+        </div>
     </div>
 </div>

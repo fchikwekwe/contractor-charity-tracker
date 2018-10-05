@@ -4,18 +4,14 @@ module.exports = function (app) {
     // New
     app.get('/donations/new', (req, res) => {
         res.render('donations-new', {
-
-        }).catch(err => {
-            console.log(err.message);
         })
     })
     // Create
     app.post('/donations', (req, res) => {
-        console.log(req.body);
+        // console.log(req.body);
         Donation.create(req.body).then((donation) => {
-            console.log(donation);
-            res.render('donations-show', { donation: donation })
-        //     // res.redirect('/'); // (`/events/${req.params.movieId}`)
+            // res.render('donations-show', { donation: donation })
+            res.redirect('/'); // (`/events/${req.params.movieId}`)
         }).catch((err) => {
             console.log(err.message);
         })
@@ -47,6 +43,16 @@ module.exports = function (app) {
             res.redirect(`/donations/${donation._id}`)
         }).catch(err => {
             console.log(err.message)
+        })
+    })
+    // Delete
+    app.delete('/donations/:id', function (req, res) {
+        console.log('Deleted donation!')
+        Donation.findByIdAndRemove(req.params.id)
+        .then((donation) => {
+            res.redirect('/');
+        }).catch(err => {
+            console.log(err.message);
         })
     })
 

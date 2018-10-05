@@ -21,16 +21,11 @@ module.exports = function (app) {
     app.get('/events/new', (req, res) => {
         res.render('events-new', {
 
-        }).catch(err => {
-            console.log(err);
+            })
         })
-    })
     // Create
     app.post('/events', (req, res) => {
-        console.log(req.body);
         Event.create(req.body).then((event) => {
-            console.log(event);
-            console.log(event.date);
             // res.render('events-show', { event: event })
             res.redirect('/');
         }).catch((err) => {
