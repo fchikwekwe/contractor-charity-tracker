@@ -58,11 +58,21 @@ module.exports = function (app) {
             console.log(err.message);
         })
     })
-
+    // Update
     app.put('/events/:id', (req, res) => {
         Event.findByIdAndUpdate(req.params.id, req.body)
         .then(event => {
             res.redirect(`/events/${event._id}`)
+        }).catch(err => {
+            console.log(err.message);
+        })
+    })
+    // Delete
+    app.delete('/events/:id', function (req, res) {
+        console.log('Deleted event!')
+        Event.findByIdAndRemove(req.params.id)
+        .then((event) => {
+            res.redirect('/');
         }).catch(err => {
             console.log(err.message);
         })
