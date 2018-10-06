@@ -19,6 +19,11 @@ describe('Events', () => {
             console.log(events)
             events.remove();
         })
+
+        Event.deleteMany({title: 'Updating the title'}).exec((err, events) =>{
+            console.log(events)
+            events.remove();
+        })
     });
 
     // Test events index
