@@ -1,6 +1,13 @@
 
+<!-- insert link to create donation associated with event -->
+<a href="/events">I'd like to add my donation under an event.</a>
 
-<form method="POST" action="/donations">
-    <!-- use donations form partial for DRY code -->
-    {{> donations-form}}
-</form>
+<fieldset>
+    <form method="POST" action="/donations">
+        <div class="" style="padding-left: 350px; padding-right: 350px;">
+        <legend>Donations</legend>
+        <!-- use donations form partial for DRY code -->
+        {{> donations-form}}
+        </div>
+    </form>
+</fieldset>

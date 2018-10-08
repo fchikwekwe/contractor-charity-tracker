@@ -1,0 +1,26 @@
+
+
+<div class="col-sm-6">
+    <table class="table">
+        <thead>
+            <tr>
+                <h3>Events</h3>
+            </tr>
+            <tr>
+                <th class="col-sm-4" scope="col">Date</th>
+                <th class="col-sm-4" scope="col">Event Title</th>
+                <th class="col-sm-4" scope="col">Charity</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            {{#each events}}
+            <tr id="" data-event-id="">
+                <td>{{this.date}}</td>
+                <th scope="row"><a href="/events/{{this._id}}">{{this.title}}</a></th>
+                <td>{{this.charity}}</td>
+            </tr>
+            {{/each}}
+        </tbody>
+    </table>
+</div>

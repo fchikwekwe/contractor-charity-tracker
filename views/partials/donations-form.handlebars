@@ -1,41 +1,25 @@
 
-<fieldset>
-    <div class="" style="padding-left: 350px; padding-right: 350px;">
-          <legend>Edit Donations</legend>
-          <!-- charity name -->
-            <div>
-              <label for="charity">Charity Name</label><br>
-              <input id="donation-charity" class="form-control" type="text" name="charity" value="{{donation.charity}}"/>
-          </div>
-          <!-- amount  -->
-          <div>
-            <label for="amount">Donation Amount</label><br>
-            <input id="amount" class="form-control" type="number" name="amount" value="{{donation.amount}}"/>
-        </div>
+  <!-- charity name -->
+    <div>
+      <label for="charity">Charity Name</label><br>
+      <input id="donation-charity" class="form-control" type="text" name="charity" value="{{donation.charity}}"/>
+  </div>
+  <!-- amount  -->
+  <div>
+    <label for="amount">Donation Amount</label><br>
+    <input id="amount" class="form-control" type="number" name="amount" value="{{donation.amount}}"/>
+</div>
 
-        <!-- date -->
-          <div>
-            <label for="date">Donation Date</label><br>
-            <input id="donation-date" class="form-control" type="date" name="date" value="{{donation.date}}"/>
-        </div>
-        <!-- event -->
-        <label for="event">Event Title</label><br>
-
-        <select>
-          <option value="No Event">No Event</option>
-          <div id="event-select">
-              {{#each events}}
-                <option value="{{this.title}}">{{this.title}}</option>
-              {{/each}}
-          </div>
-        </select>
-        <!-- notes -->
-          <div>
-            <label for="notes">Donation Notes</label><br>
-            <textarea id="donation-notes" class="form-control" name="notes" rows="10" value="{{donation.notes}}"/></textarea>
-        </div>
-        <!-- BUTTONS -->
-        <button class="btn btn-primary" type="submit">Save Donation</button>
-        <button class="btn btn-danger" type="cancel">Cancel</button>
-    </div>
-</fieldset>
+<!-- date -->
+  <div>
+    <label for="date">Donation Date</label><br>
+    <input id="donation-date" class="form-control" type="date" name="date" value="{{donation.date}}"/>
+</div>
+<!-- notes -->
+  <div>
+    <label for="notes">Donation Notes</label><br>
+    <textarea id="donation-notes" class="form-control" name="notes" rows="10" value="{{donation.notes}}"/></textarea>
+</div>
+<!-- BUTTONS -->
+<button class="btn btn-primary" type="submit">Save Donation</button>
+<button class="btn btn-danger" type="cancel">Cancel</button>

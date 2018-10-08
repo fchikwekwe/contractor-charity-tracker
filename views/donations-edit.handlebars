@@ -1,6 +1,11 @@
 
+<fieldset>
+    <form method="POST" action="/donations/{{donation._id}}?_method=PUT">
+        <div class="" style="padding-left: 350px; padding-right: 350px;">
+        <legend>Donations</legend>
+        <!-- use donations form partial for DRY code -->
+        {{> donations-form}}
 
-<form method="POST" action="/donations/{{donation._id}}?_method=PUT">
-    <!-- use donations form partial for DRY code -->
-    {{> donations-form}}
-</form>
+        </div>
+    </form>
+</fieldset>

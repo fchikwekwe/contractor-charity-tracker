@@ -1,17 +1,36 @@
 const Donation = require('../models/donation.js');
+const Event = require('../models/event.js')
 
 module.exports = function (app) {
-    // New
+    // New; allow user to create standalone donations
     app.get('/donations/new', (req, res) => {
         res.render('donations-new', {
         })
     })
-    // Create
+    // // New; allow user to create donations associated with an event
+    // app.get('/events/:id/donations/new', (req, res) => {
+    //     console.log("param", req.params);
+    //     res.render('donations-events-new', {
+    //     })
+    // })
+    // Create standalone donations
     app.post('/donations', (req, res) => {
         // console.log(req.body);
         Donation.create(req.body).then((donation) => {
             // res.render('donations-show', { donation: donation })
             res.redirect('/'); // (`/events/${req.params.movieId}`)
+        }).catch((err) => {
+            console.log(err.message);
+        })
+    })
+    // Create donations associated with event and show event afterwards
+    app.post('/events/:id/donations', (req, res) => {
+        console.log("body", req.body);
+        console.log("param", req.body.eventId);
+
+        Donation.create(req.body).then((donation) => {
+            // res.render('events-show', { events: events, donation: donation })
+            res.redirect(`/events/${req.body.eventId}`);
         }).catch((err) => {
             console.log(err.message);
         })

@@ -14,6 +14,14 @@
             <button type="submit">Delete</button>
         </form></p>
 
+        <fieldset>
+            <form method="POST" action="/events/:id/donations">
+                <input type="hidden" class="form-control" value="{{event._id}}" name="eventId">
+                <!-- use donations form partial for DRY code -->
+                {{> donations-form}}
+            </form>
+        </fieldset>
+
         <h3>Donations at this Event</h3>
         <div id="donations">
             {{#each donations}}
