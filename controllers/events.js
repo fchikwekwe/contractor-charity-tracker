@@ -50,7 +50,10 @@ module.exports = function (app) {
         // res.send('events here!')
         Event.findById(req.params.id)
         .then((event) => {
-            res.render('events-show', { event: event });
+            Donation.find({ charity: event.charity }).then((donations) => {
+                console.log(event.charity);
+                res.render('events-show', { event: event, donations: donations });
+            })
         }).catch(err => {
             console.log(err.message);
         })
