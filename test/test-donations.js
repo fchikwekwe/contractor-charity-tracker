@@ -10,12 +10,24 @@ const sampleDonation = {
     "notes": "gave lots of money."
 }
 
+const sampleDonation2 = {
+    "amount": "9000",
+    "notes": "extremely specific note for mocha tests that will not result in accidental deletion of real donation."
+}
+
 chai.use(chaiHttp);
 
 describe('Donations', () => {
 
     after(() => {
         Donation.deleteMany({charity: 'Great Cause Fund'}).exec((err, donations) =>{
+            console.log(donations)
+            // donations.remove();
+        })
+    });
+
+    after(() => {
+        Donation.deleteMany({notes: "extremely specific note for mocha tests that will not result in accidental deletion of real donation."}).exec((err, donations) =>{
             console.log(donations)
             // donations.remove();
         })
@@ -71,6 +83,21 @@ describe('Donations', () => {
                 done();
             });
     });
+
+    // Test  create associated donations route
+    it('should create a single donation on /events/:id/donations POST', (done) => {
+        var donation = new Donation(sampleDonation2);
+        donation.save((err, data) =>{
+            chai.request(server)
+                .post(`/events/${data._id}/donations`)
+                .send(donation)
+                .end((err, res) => {
+                    res.should.have.status(200);
+                    res.should.be.html
+                    done();
+                });
+        })
+    }).timeout(5000);
 
     // Test donations update route
     it('should update a single donation on /donations/<id> PUT', (done) => {
