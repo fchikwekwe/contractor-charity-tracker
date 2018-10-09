@@ -83,21 +83,17 @@ describe('Donations', () => {
                 done();
             });
     });
-
-    // Test  create associated donations route
+    // Test  create associated donations route; NOT WORKING
     it('should create a single donation on /events/:id/donations POST', (done) => {
-        var donation = new Donation(sampleDonation2);
-        donation.save((err, data) =>{
-            chai.request(server)
-                .post(`/events/${data._id}/donations`)
-                .send(donation)
-                .end((err, res) => {
-                    res.should.have.status(200);
-                    res.should.be.html
-                    done();
-                });
-        })
-    }).timeout(5000);
+        chai.request(server)
+            .post(`/events/${data._id}/donations`)
+            .send(sampleDonation2)
+            .end((err, res) => {
+                res.should.have.status(200);
+                res.should.be.html
+                done();
+            });
+    });
 
     // Test donations update route
     it('should update a single donation on /donations/<id> PUT', (done) => {
