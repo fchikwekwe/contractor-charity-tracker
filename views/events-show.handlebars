@@ -1,5 +1,7 @@
+<button type="submit" name="home-button">
+    <a href="/" style="font-size:30px">Home</a>
+</button>
 
-<a href="/">Back to Home</a>
 <div class="row">
     <div class="col-sm-6 col-sm-offset-4">
         <h1>Event Title: {{event.title}}</h1>
@@ -19,6 +21,12 @@
         <fieldset>
             <form method="POST" action="/events/:id/donations">
                 <input type="hidden" class="form-control" value="{{event._id}}" name="eventId">
+                <!-- charity name -->
+                <div>
+                    <label for="charity">Charity Name</label><br>
+                    <input id="event-charity" class="form-control" type="hidden" name="charity" value="{{event.charity}}"/>
+                    <p>{{event.charity}}</p>
+                </div>
                 <!-- use donations form partial for DRY code -->
                 {{> donations-form}}
             </form>

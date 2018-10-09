@@ -1,6 +1,5 @@
 const Event = require('../models/event.js');
 const Donation = require('../models/donation.js')
-// let date = new Date(Event.date);
 
 module.exports = function (app) {
     // Root
@@ -45,13 +44,13 @@ module.exports = function (app) {
     })
 
 
-    // Show
+    // Show; contribution by Edwin Cloud; see pull request for all changes
     app.get('/events/:id', (req, res) => {
         // res.send('events here!')
         Event.findById(req.params.id)
         .then((event) => {
             Donation.find({ charity: event.charity }).then((donations) => {
-                console.log(event.charity);
+                // console.log(event.charity);
                 res.render('events-show', { event: event, donations: donations });
             })
         }).catch(err => {

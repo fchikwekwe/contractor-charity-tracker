@@ -1,11 +1,21 @@
 
 <!-- insert link to create donation associated with event -->
-<a class ="text-center" href="/events" style="font-size:20px">I'd like my donation to be associated with an event I attended.</a>
+<p class="text-center">
+    <a href="/events" style="font-size:20px">I'd like my donation to be associated with an event I attended.</a>
+</p>
 
+<hr>
+
+<p class="text-center" style="font-size:16px">Or, fill out the form below to log a standalone donation.</p>
 <fieldset>
     <form method="POST" action="/donations">
         <div class="" style="padding-left: 350px; padding-right: 350px;">
         <legend>Donations</legend>
+        <!-- charity name -->
+        <div>
+            <label for="charity">Charity Name</label><br>
+            <input id="donation-charity" class="form-control" type="text" name="charity" value="{{donation.charity}}"/>
+        </div>
         <!-- use donations form partial for DRY code -->
         {{> donations-form}}
         </div>
