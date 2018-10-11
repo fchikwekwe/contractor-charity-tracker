@@ -6,7 +6,7 @@ const Donation = mongoose.model('Donation', {
     amount: Number,
     date: Date,
     notes: String,
-    eventId: { type: Schema.Types.ObjectId, ref: 'Event'},
+    eventId: { type: Schema.Types.ObjectId, ref: 'Event'}
 })
 
 module.exports = Donation;

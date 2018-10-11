@@ -3,11 +3,17 @@ const chaiHttp = require('chai-http');
 const server = require('../app');
 const should = chai.should();
 const Event = require('../models/event');
+const Donation = require('../models/donation');
 
 const sampleEvent = {
     "title": "Great Cause Benefit",
     "charity": "Great Cause Fund",
     "notes": "great event. gave lots of money."
+}
+
+const sampleEventDonation = {
+    "amount": "9000",
+    "notes": "extremely specific note for mocha tests that will not result in accidental deletion of real donation."
 }
 
 chai.use(chaiHttp);
@@ -23,6 +29,11 @@ describe('Events', () => {
         Event.deleteMany({title: 'Updating the title'}).exec((err, events) =>{
             console.log(events)
             events.remove();
+        })
+
+        Donation.deleteMany({notes: "extremely specific note for mocha tests that will not result in accidental deletion of real donation."}).exec((err, donations) =>{
+            console.log(donations)
+            // donations.remove();
         })
     });
 
@@ -116,4 +127,25 @@ describe('Events', () => {
             });
         });
     });
+
+    // Test create associated donations route; NOT WORKING
+    it('should create a single donation on /events/:id/donations POST', (done) => {
+        // CREATE SAMPLE EVENT
+        var event = new Event(sampleEvent);
+        // SAVE SAMPLE EVENT
+        event.save((err, data) => {
+            chai.request(server)
+                // SEND POST REQUEST TO URL
+                .post(`/events/${data._id}/donations`)
+                // SEND IN SAMPLE EVENT DONATION
+                .send(sampleEventDonation)
+                // RESPOND 
+                .end((err, res) => {
+                    res.should.have.status(200);
+                    res.should.be.html
+                    done();
+                });
+        })
+    })
+
 })

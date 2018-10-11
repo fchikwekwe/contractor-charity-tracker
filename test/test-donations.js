@@ -10,17 +10,6 @@ const sampleDonation = {
     "notes": "gave lots of money."
 }
 
-const sampleDonation2 = {
-    "amount": "9000",
-    "notes": "extremely specific note for mocha tests that will not result in accidental deletion of real donation."
-}
-
-const sampleDonation3 = {
-    "amount": "555387",
-    "notes": "other extremely specific note for mocha tests that will not result in accidental deletion of real donation."
-}
-
-
 chai.use(chaiHttp);
 
 describe('Donations', () => {
@@ -69,6 +58,7 @@ describe('Donations', () => {
         var donation = new Donation(sampleDonation);
         donation.save((err, data) => {
             chai.request(server)
+                // .get(`/donations/5bce8def20880c2b54f650a4/edit`)
                 .get(`/donations/${data._id}/edit`)
                 .end((err, res) => {
                     res.should.have.status(200);
@@ -89,21 +79,6 @@ describe('Donations', () => {
                 done();
             });
     });
-    // Test create associated donations route; NOT WORKING
-    it('should create a single donation on /events/:id/donations POST', (done) => {
-        var donation = new Donation(sampleDonation3);
-        donation.save((err, data) => {
-            console.log(donation)
-            chai.request(server)
-                .post(`/events/${data._id}/donations`)
-                .send(donation)
-                .end((err, res) => {
-                    res.should.have.status(200);
-                    res.should.be.html
-                    done();
-                });
-        })
-    }).timeout(5000)
 
     // Test donations update route
     it('should update a single donation on /donations/<id> PUT', (done) => {

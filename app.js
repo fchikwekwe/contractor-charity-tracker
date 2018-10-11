@@ -4,6 +4,7 @@ const bodyParser = require('body-parser');
 const app = express();
 const mongoose = require('mongoose');
 var exphbs = require('express-handlebars');
+// const moment = require('moment')
 
 const Event = require('./models/event');
 const Donation = require('./models/donation');
@@ -18,6 +19,8 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(methodOverride('_method'));
 app.use(express.static('public'));
 app.use(bodyParser.json());
+
+// app.locals.moment = moment;
 
 require('./controllers/events.js')(app);
 require('./controllers/donations.js')(app);

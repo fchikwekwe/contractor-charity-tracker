@@ -14,6 +14,7 @@ module.exports = function (app) {
             console.log(err);
         })
     })
+
     // Events
     app.get('/events', (req, res) => {
         Event.find()
