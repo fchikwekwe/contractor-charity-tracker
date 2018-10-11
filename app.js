@@ -9,7 +9,7 @@ var exphbs = require('express-handlebars');
 const Event = require('./models/event');
 const Donation = require('./models/donation');
 
-mongoose.connect(process.env.MONGOBD_URI || 'mongodb://localhost/charity-tracker', {useNewUrlParser: true});
+mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/charity-tracker', {useNewUrlParser: true});
 
 
 app.set('port', process.env.PORT || 3000);
