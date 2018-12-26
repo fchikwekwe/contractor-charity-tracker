@@ -21,12 +21,14 @@ chai.use(chaiHttp);
 describe('Events', () => {
 
     after(() => {
-        Event.deleteMany({title: 'Great Cause Benefit'}).exec((err, events) =>{
+        Event.deleteMany({title: 'Great Cause Benefit'})
+            .exec((err, events) =>{
             console.log(events)
             events.remove();
         })
 
-        Event.deleteMany({title: 'Updating the title'}).exec((err, events) =>{
+        Event.deleteMany({title: 'Updating the title'})
+            .exec((err, events) =>{
             console.log(events)
             events.remove();
         })
@@ -139,7 +141,7 @@ describe('Events', () => {
                 .post(`/events/${data._id}/donations`)
                 // SEND IN SAMPLE EVENT DONATION
                 .send(sampleEventDonation)
-                // RESPOND 
+                // RESPOND
                 .end((err, res) => {
                     res.should.have.status(200);
                     res.should.be.html
