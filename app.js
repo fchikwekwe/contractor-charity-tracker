@@ -12,9 +12,23 @@ const Donation = require('./models/donation');
 mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/charity-tracker', {useNewUrlParser: true});
 
 
+const timesHelper = function(n, block) {
+                         let accum = "";
+                         for(var i = 1; i < n; ++i)
+                           accum += block.fn(i);
+                         return accum;
+                       };
+
+const hbs = exphbs.create({
+  defaultLayout: "main",
+  helpers: {
+    times: timesHelper
+  }
+})
+
 app.set('port', process.env.PORT || 3000);
 app.set('view engine', 'handlebars');
-app.engine('handlebars', exphbs({defaultLayout: 'main'}));
+app.engine('handlebars', hbs.engine);
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(methodOverride('_method'));
 app.use(express.static('public'));

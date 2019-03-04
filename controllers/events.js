@@ -8,7 +8,7 @@ module.exports = function (app) {
 
         Event.paginate({}, { page: page })
         .then((results) => {
-            console.log(results);
+            // console.log(results);
             Donation.find()
             .then((donations) => {
                 var i = 1;
