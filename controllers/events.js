@@ -14,7 +14,6 @@ module.exports = function (app) {
                 var i = 1;
                 res.render('index', {
                     events: results.docs,
-                    numPages: results.pages,
                     pagesCount: results.pages,
                     currentPage: page,
                     donations

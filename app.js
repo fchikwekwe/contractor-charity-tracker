@@ -6,7 +6,6 @@ const mongoose = require('mongoose');
 
 /* Templating tools * */
 var exphbs = require('express-handlebars');
-// var hbs = require('handlebars');
 var helpers = require('handlebars-helpers')();
 
 const Event = require('./models/event');
