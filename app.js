@@ -3,18 +3,20 @@ const methodOverride = require('method-override');
 const bodyParser = require('body-parser');
 const app = express();
 const mongoose = require('mongoose');
+
+/* Templating tools * */
 var exphbs = require('express-handlebars');
-// const moment = require('moment')
+// var hbs = require('handlebars');
+var helpers = require('handlebars-helpers')();
 
 const Event = require('./models/event');
 const Donation = require('./models/donation');
 
 mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/charity-tracker', {useNewUrlParser: true});
 
-
 const timesHelper = function(n, block) {
                          let accum = "";
-                         for(var i = 1; i < n; ++i)
+                         for(var i = 1; i <= n; ++i)
                            accum += block.fn(i);
                          return accum;
                        };
@@ -24,7 +26,7 @@ const hbs = exphbs.create({
   helpers: {
     times: timesHelper
   }
-})
+});
 
 app.set('port', process.env.PORT || 3000);
 app.set('view engine', 'handlebars');

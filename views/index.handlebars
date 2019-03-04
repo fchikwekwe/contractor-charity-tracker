@@ -24,17 +24,27 @@
     </table>
     <nav class="d-flex justify-content-center"aria-label="Page navigation">
         <ul class="pagination">
-            <li class="page-item">
-                <a class="page-link" href=`?page=${currentPage - 1}`>Previous</a>
-            </li>
-            {{# times pagesCount}}
+            {{#is currentPage 1}}
+                <li class="page-item" style="display: none;"></li>
+            {{else}}
+                <li class="page-item">
+                    <a class="page-link" href="?page={{subtract currentPage 1}}">Previous</a>
+                </li>
+            {{/is}}
+
+            {{#times pagesCount}}
                 <li class="page-item">
                     <a class="page-link" href="/?page={{this}}">{{this}}</a>
                 </li>
             {{/times}}
-            <li class="page-item">
-                <a class="page-link" href=`?page=${parseInt(currentPage) + 1}`>Next</a>
-            </li>
+
+            {{#is currentPage numPages}}
+                <li class="page-item" style="display: none;"></li>
+            {{else}}
+                <li class="page-item">
+                    <a class="page-link" href="?page={{sum currentPage 1}}">Next</a>
+                </li>
+            {{/is}}
         </ul>
     </nav>
 </div>
