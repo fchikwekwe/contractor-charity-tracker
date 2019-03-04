@@ -1,13 +1,21 @@
 const mongoose = require('mongoose');
-mongoose.connect(process.env.MONGOBD_URI || 'mongodb://localhost/charity-tracker', {useNewUrlParser: true});
 
+const mongoosePaginate = require('mongoose-paginate');
 
-const Event = mongoose.model('Event', {
+mongoosePaginate.paginate.options = {
+  limit: 5 // how many records on each page
+};
+
+const Schema = mongoose.Schema;
+
+const EventSchema = new Schema ({
     title: String,
     charity: String,
     date: Date,
     notes: String
-    // eventId: { type: String, required: true }
 });
 
-module.exports = Event;
+
+EventSchema.plugin(mongoosePaginate);
+
+module.exports = mongoose.model('Event', EventSchema);

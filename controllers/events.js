@@ -4,16 +4,25 @@ const Donation = require('../models/donation.js')
 module.exports = function (app) {
     // Root
     app.get('/', (req, res) => {
-        Event.find()
-        .then(events => {
+        const page = req.query.page || 1
+
+        Event.paginate({}, { page: page })
+        .then((results) => {
+            console.log(results);
             Donation.find()
-            .then(donations => {
-                res.render('index', { events: events, donations: donations });
+            .then((donations) => {
+                var i = 1;
+                res.render('index', {
+                    events: results.docs,
+                    pagesCount: results.pages,
+                    currentPage: page,
+                    donations
+                });
             })
         }).catch(err => {
             console.log(err);
-        })
-    })
+        });
+    });
 
     // Events
     app.get('/events', (req, res) => {
